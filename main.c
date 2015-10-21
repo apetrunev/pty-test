@@ -1,5 +1,6 @@
 #include <sys/time.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <sys/select.h>
 
 #include <stdio.h>
@@ -13,7 +14,7 @@
 int main(int argc, char **argv)
 {
 	
-	int pfd, status;
+	int pfd, sfd, status;
 	pid_t pid;
 	char *pname;
 			
@@ -56,7 +57,7 @@ int main(int argc, char **argv)
 		close(pfd);
 		
 		if (setsid() < 0) {
-			fprintf(stderr, "error: setsid() faild\n")
+			fprintf(stderr, "error: setsid() faild\n");
 			exit(EXIT_FAILURE);
 		}
 
